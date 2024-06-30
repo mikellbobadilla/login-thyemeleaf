@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
     <title>Register page</title>
 </head>
-<body>
-<h1>Usuario creado correctamente</h1>
+<body class="bg-zinc-900 text-white">
+<section class="bg-zinc-900">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <span class="flex items-center mb-6 text-2xl font-semibold text-white">
+            <img class="w-8 h-8 mr-2" src="https://spring.io/img/spring.svg" alt="logo">
+            Spring - Thymeleaf
+        </span>
+
+        <div class="w-full rounded-lg md:mt-0 sm:max-w-md xl:p-0 bg-zinc-800">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
+                    Create an account
+                </h1>
+                <form th:object="${accountRequest}" th:action="@{/accounts/create}" method="post" class="space-y-4 md:space-y-6">
+
+                    <div th:if="${#fields.hasGlobalErrors()}" class="flex items-center p-4 mb-4 text-sm rounded-lg bg-zinc-700 text-red-400" role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <div> <span th:errors="${accountRequest}"></span> </div>
+                    </div>
+
+                    <div>
+                        <label for="username" class="block mb-2 text-sm font-medium text-white">Your username</label>
+                        <input th:field="*{username}" type="text" name="username" id="username"
+                               class="border text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 bg-zinc-800 border-zinc-700 placeholder-zinc-400 text-white"
+                               placeholder="Enter your username"
+                        >
+                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="block text-red-400 text-sm"></span>
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-white">Your password</label>
+                        <input th:field="*{password}" type="password" name="password" id="password"
+                               class="border text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 bg-zinc-800 border-zinc-700 placeholder-zinc-400 text-white"
+                               placeholder="Enter your password"
+                        >
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="block text-red-400 text-sm"></span>
+                    </div>
+                    <div>
+                        <label for="confirm-password" class="block mb-2 text-sm font-medium text-white">Confirm password</label>
+                        <input th:field="*{confirmPassword}" type="password" name="confirm-password" id="confirm-password"
+                               class="border text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 bg-zinc-800 border-zinc-700 placeholder-zinc-400 text-white"
+                               placeholder="Confirm your password"
+                        >
+                        <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="block text-red-400 text-sm"></span>
+                    </div>
+                    <button type="submit" class="w-full text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-800">Create an account</button>
+                    <p class="text-sm font-light text-zinc-300">
+                        Already have an account? <a href="#" class="font-medium hover:underline text-indigo-500">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
