@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Setter
 public class UserDetailsImpl implements UserDetails {
@@ -41,4 +42,26 @@ public class UserDetailsImpl implements UserDetails {
         return username;
     }
 
+
+    @Override
+    public String toString() {
+        return "UserDetailsImpl{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDetailsImpl that = (UserDetailsImpl) o;
+        return Objects.equals(username, that.username) && Objects.equals(password, that.password) && role == that.role;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, password, role);
+    }
 }
