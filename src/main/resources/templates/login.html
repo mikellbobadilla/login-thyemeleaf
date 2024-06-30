@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Login page</title>
+</head>
+<body class="bg-zinc-900">
+<section class="bg-zinc-900">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <span class="flex items-center mb-6 text-2xl font-semibold text-white">
+            <img class="w-8 h-8 mr-2" src="https://spring.io/img/spring.svg" alt="logo">
+            Spring - Thymeleaf
+        </span>
+        <div class="w-full rounded-lg md:mt-0 sm:max-w-md xl:p-0 bg-zinc-800">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
+                    Sign in to your account
+                </h1>
+                <form class="space-y-4 md:space-y-6" th:action="@{/login}" method="post">
+                    <div>
+                        <label for="username" class="block mb-2 text-sm font-medium text-white">Username</label>
+                        <input type="text" name="username" id="username" class="border rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-zinc-800 border-zinc-600 placeholder-zinc-400 text-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter yout username">
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-white">Password</label>
+                        <input type="password" name="password" id="password" class="border rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-zinc-800 border-zinc-600 placeholder-zinc-400 text-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter yout password">
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="remember-me" name="remember-me" aria-describedby="remember" type="checkbox" class="w-4 h-4 border rounded focus:ring-3 bg-zinc-700 border-zinc-600 focus:ring-indigo-600 ring-offset-zinc-800">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="remember-me" class="text-zinc-300">Remember me</label>
+                            </div>
+                        </div>
+                        <a href="#" class="text-sm font-medium text-indigo-600 hover:underline">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        Sign in
+                    </button>
+                    <p class="text-sm font-light text-zinc-400">
+                        Don’t have an account yet? <a href="#" class="font-medium hover:underline text-indigo-500">Sign up</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
