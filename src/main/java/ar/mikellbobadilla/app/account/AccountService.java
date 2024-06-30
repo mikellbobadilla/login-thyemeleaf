@@ -29,4 +29,20 @@ public class AccountService {
 
         repository.save(account);
     }
+
+    public void createAccount(AccountRequest request) throws AccountException {
+        boolean isPasswordMatch = request.getPassword().equals(request.getConfirmPassword());
+        boolean isUsernameExists = repository.existsByUsername(request.getUsername());
+        if (!isPasswordMatch) throw new AccountException("Password miss match");
+        if (isUsernameExists) throw new AccountException("Username exists");
+
+        String passwordEncoded = encoder.encode(request.getPassword());
+
+        Account newAccount = Account.builder()
+                .username(request.getUsername())
+                .password(passwordEncoded)
+                .role(Role.USER)
+                .build();
+        repository.save(newAccount);
+    }
 }
